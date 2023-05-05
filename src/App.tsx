@@ -22,11 +22,12 @@ export function App() {
   const loadAllTransactions = useCallback(async () => {
     setIsLoading(true)
     transactionsByEmployeeUtils.invalidateData()
-
+    
     await employeeUtils.fetchAll()
+    setIsLoading(false)
+    
     await paginatedTransactionsUtils.fetchAll()
 
-    setIsLoading(false)
   }, [employeeUtils, paginatedTransactionsUtils, transactionsByEmployeeUtils])
 
   const loadTransactionsByEmployee = useCallback(
@@ -64,7 +65,7 @@ export function App() {
             if (newValue === null) {
               return
             }
-            if (newValue.firstName === "All" && newValue.id === "") {
+            if (newValue.firstName === "All" && newValue.lastName === "Employees") {
               await loadAllTransactions()
             }else {
               await loadTransactionsByEmployee(newValue.id)
