@@ -4,8 +4,8 @@ import { fakeFetch, RegisteredEndpoints } from "../utils/fetch"
 import { useWrappedRequest } from "./useWrappedRequest"
 
 export function useCustomFetch() {
-  const { cache } = useContext(AppContext)
-  const { loading, wrappedRequest } = useWrappedRequest()
+  const { cache } = useContext(AppContext);
+  const { loading, wrappedRequest } = useWrappedRequest();
 
   const fetchWithCache = useCallback(
     async <TData, TParams extends object = object>(
@@ -26,8 +26,8 @@ export function useCustomFetch() {
         return result
       }),
     [cache, wrappedRequest]
-  )
-
+  );
+  
   const fetchWithoutCache = useCallback(
     async <TData, TParams extends object = object>(
       endpoint: RegisteredEndpoints,
